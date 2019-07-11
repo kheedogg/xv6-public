@@ -34,15 +34,12 @@ Make `walkpgdir1` function to use `walkpgdir` function in `trap.c`
 
 ### kalloc.c
 - `kmem`
-</br>
 Add `num_of_free_pages`(number of free pages), `reference_count[100000]`(condition for reference of each page. If 3 processes reference fourth page, reference_count[4]=3)
 
 - `kinit`
-</br>
 Initialize `num_of_free_pages` `reference_count`
 
 - `kfree`
-</br>
 v: virtual memory address, V2P(v): physical memory address
 </br>
 If physical memory address is referenced by more than 1 process, just decrease reference count.
@@ -50,23 +47,18 @@ If physical memory address is referenced by more than 1 process, just decrease r
 If no process reference this physical memory address, free the memory and increase number of free pages.
 
 - `kalloc`
-</br>
 This function is called when new page allocates. Make reference count 1, and decrease number of free pages.
 
 - `numfree`
-</br>
 Function for returns number of free pages
 
 - `increase_refcount`
-</br>
 Function for increses reference count
 
 - `num_refcount`
-</br>
 Function for returns value of reference count
 
 - `decrease_refcount`
-</br>
 Function for decreases reference count
 
 ### trap.c

@@ -4,6 +4,19 @@
 
 ## What is implemeted
 
+### functions
+- `numfree`
+- `increase_refcount`
+- `num_refcount`
+- `decrease_refcount`
+
+### structure
+- `kmem`
+
+
+
+
+
 ## Change log
 - `vm.c`
 - `kalloc.c`
@@ -17,28 +30,66 @@
 
 
 ### vm.c
-make `walkpgdir1` function to use `walkpgdir` function in `trap.c`
+Make `walkpgdir1` function to use `walkpgdir` function in `trap.c`
 
 ### kalloc.c
+- `kmem`
+</br>
+Add `num_of_free_pages`(number of free pages), `reference_count[100000]`(condition for reference of each page. If 3 processes reference fourth page, reference_count[4]=3)
 
+- `kinit`
+</br>
+Initialize `num_of_free_pages` `reference_count`
+
+- `kfree`
+</br>
+v: virtual memory address, V2P(v): physical memory address
+</br>
+If physical memory address is referenced by more than 1 process, just decrease reference count.
+</br>
+If no process reference this physical memory address, free the memory and increase number of free pages.
+
+- `kalloc`
+</br>
+This function is called when new page allocates. Make reference count 1, and decrease number of free pages.
+
+- `numfree`
+</br>
+Function for returns number of free pages
+
+- `increase_refcount`
+</br>
+Function for increses reference count
+
+- `num_refcount`
+</br>
+Function for returns value of reference count
+
+- `decrease_refcount`
+</br>
+Function for decreases reference count
 
 ### trap.c
-T_PGFLT
+Handling page fault(`T_PGFLT`). When process tries to write on read only page, page fault occurs.
+</br>
+If there is only one process that references this page, then change authority to writable.
+</br>
+If there are several processes that reference this page, then make new page and copy the contents, and decrease reference count.
 
 ### defs.h
-add definition of new funtions: `numfree` `increase_refcount` `num_refcount` `decrease_refcount`
+Add definition of new funtions: `numfree` `increase_refcount` `num_refcount` `decrease_refcount`
 
 ### user.h
-add system call for `numfree`
+Add system call for `numfree`
 
 ### usys.S
-add system call for `numfree`
+Add system call for `numfree`
 
 ### syscall.c
-add `sys_numfree`
+Add `sys_numfree`
 
 ### sysproc.c
-add interrupt function for `numfree`
+Add interrupt function for `numfree`
 
 ### syscall.h
-add system call number(23) for `numfree`
+Add system call number(23) for `numfree`

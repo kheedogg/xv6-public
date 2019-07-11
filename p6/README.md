@@ -7,15 +7,15 @@
 
 - When process forks,
 
-  1.Create shared mapping to the same page frames in physical page
+  1. Create shared mapping to the same page frames in physical page
   
-  2.Shared pages are read-only (not writable)
+  2. Shared pages are read-only (not writable)
 
 - When data is written to shared pages,
 
-  1.Page fault is generated
+  1. Page fault is generated
   
-  2.xv6 allocates new page frame in physical memory, and copy memory ofw original before write
+  2. xv6 allocates new page frame in physical memory, and copy memory ofw original before write
 
 - Reference counter for physical pages is needed
 

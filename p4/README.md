@@ -43,6 +43,8 @@
 
 ### proc.h
 
+Add `nice` variable to save nice value in `proc` structure.
+
 
 ### proc.c
 

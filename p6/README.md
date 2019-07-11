@@ -1,23 +1,21 @@
-# Copy on Write(COW)
+# xv6 Copy on Write(COW)
 
-## What is Copy on Wite?
 
 ## What is implemeted
 
-### functions
-- `numfree`
-- `increase_refcount`
-- `num_refcount`
-- `decrease_refcount`
+- Add new system call `numfree()` which returns number of free page frames in physical memory
 
-### structure
-- `kmem`
+- When process forks, 1.Create shared mapping to the same page frames in physical page 2.Shared pages are read-only (not writable)
 
+- When data is written to shared pages, 1.Page fault is generated 2.xv6 allocates new page frame in physical memory, and copy memory ofw original before write
 
+- Reference counter for physical pages is needed
 
+- Update page table after modifying page table
 
 
 ## Change log
+### Changed files
 - `vm.c`
 - `kalloc.c`
 - `trap.c`
@@ -34,17 +32,17 @@ Make `walkpgdir1` function to use `walkpgdir` function in `trap.c`
 
 ### kalloc.c
 
-`kmem`
+- `kmem`
 
 Add `num_of_free_pages`(number of free pages), `reference_count[100000]`(condition for reference of each page. If 3 processes reference fourth page, reference_count[4]=3)
 
 
-`kinit`
+- `kinit`
 
 Initialize `num_of_free_pages` `reference_count`
 
 
-`kfree`
+- `kfree`
 
 v: virtual memory address, V2P(v): physical memory address
 </br>
@@ -53,27 +51,27 @@ If physical memory address is referenced by more than 1 process, just decrease r
 If no process reference this physical memory address, free the memory and increase number of free pages.
 
 
-`kalloc`
+- `kalloc`
 
 This function is called when new page allocates. Make reference count 1, and decrease number of free pages.
 
 
-`numfree`
+- `numfree`
 
 Function for returns number of free pages
 
 
-`increase_refcount`
+- `increase_refcount`
 
 Function for increses reference count
 
 
-`num_refcount`
+- `num_refcount`
 
 Function for returns value of reference count
 
 
-`decrease_refcount`
+- `decrease_refcount`
 
 Function for decreases reference count
 

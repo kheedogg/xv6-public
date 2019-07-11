@@ -24,15 +24,15 @@
 
 ## Change log
 ### Changed files
-- [vm.c](#vm.c)
-- [kalloc.c](#kalloc.c)
-- [trap.c](#trap.c)
-- [defs.h](#defs.h)
-- [user.h](#user.h)
-- [usys.S](#usys.S)
-- [syscall.c](#syscall.c)
-- [sysproc.c](#sysproc.c)
-- [syscall.h](#syscall.h)
+- [vm.c](#vmc)
+- [kalloc.c](#kallocc)
+- [trap.c](#trapc)
+- [defs.h](#defsh)
+- [user.h](#userh)
+- [usys.S](#usysS)
+- [syscall.c](#syscallc)
+- [sysproc.c](#sysprocc)
+- [syscall.h](#syscallh)
 
 
 ### vm.c

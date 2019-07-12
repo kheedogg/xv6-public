@@ -84,7 +84,7 @@ Make some system call related to thread.
 
 - `gettid()`: function for return tid(thread ID) value
 
-### p3: [xv6 synchronization](https://github.com/contestpark/xv6-public/tree/master/p3)
+### [p3: xv6 synchronization](https://github.com/contestpark/xv6-public/tree/master/p3)
 
 Make some system call related to mutex and condition variable.
 

@@ -52,3 +52,66 @@ will need to install a cross-compiler gcc suite capable of producing
 x86 ELF binaries (see https://pdos.csail.mit.edu/6.828/).
 Then run "make TOOLPREFIX=i386-jos-elf-". Now install the QEMU PC
 simulator and run "make qemu".
+
+
+## Project
+
+### p0: xv6 install and boot
+
+- How to install and boot xv6
+
+- Print any message in init (There is no format)
+
+### p1: xv6 system call
+
+Make some system call related to nice value.
+
+- `setnice()`: function for set nice value
+
+- `getnice()`: function for get nice value
+
+- `ps()`: function for print pid, nice, status, and name
+
+### p2: xv6 thread
+
+Make some system call related to thread.
+
+- `thread_create()`: function for making thread
+
+- `thread_exit()`: function for exiting thread
+
+- `thread_join()`: function for join thread
+
+- `gettid()`: function for return tid(thread ID) value
+
+### p3: xv6 synchronization
+
+Make some system call related to mutex and condition variable.
+
+- `mutex_init()`: funtion for initng mutex
+
+- `mutex_lock()`: function for lock mutex
+
+- `mutex_unlock()`: function for unlock mutex
+
+- `cond_init()`: funtion for initing condition variable
+
+- `cond_wait()`: function for waiting condition variable
+
+- `cond_signal()`: function for signal condition variable
+
+### p4: xv6 priority scheduler
+
+- Change round-robin scheduler to priority-based scheduler
+
+### p5: xv6 page fault handler
+
+- Implement page fault handler
+
+- Increase number of stacks to 4
+
+### p6: xv6 copy on write (COW)
+
+- Make a system call `numfree()` that returns number of free page frames in physical memory
+
+- Implement copy on write

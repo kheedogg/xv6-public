@@ -95,27 +95,35 @@ Initialize tid to 1.
 
   - Allocate thread
 
-Make `thread_create()` by referencing to `fork()`.
+  Make `thread_create()` by referencing to `fork()`.
 
-Unlike `fork()` function, thread shares pgdir. (fork copies pgdir)
+  Unlike `fork()` function, thread shares pgdir. (fork copies pgdir)
 
-Has same nice value and pid as current thread.
+  Has same nice value and pid as current thread.
 
   - Moving arg to function
   
-The way that moving arg to function is using stack.
+  The way that moving arg to function is using stack.
 
-pre-sp is pointing to stack+4096, and new sp is pointing to stack+4096-8
+  pre-sp is pointing to stack+4096, and new sp is pointing to stack+4096-8
 
-stack |
------ |
-... |
-arg |
-0xffffffff |
+  stack      | sp
+  ---------- | --------- |
+  ...        | ← new sp(stack+4088) |
+  arg        |　  |
+  0xffffffff | ← pre-sp(stack+4096) |
 
-Set esi, eax, esp, ebp to funtion, 0, sp, ebp.
+  Set
+  
+  `esi`: function
+  
+  `eax`: 0 (initialize return value)
+  
+  `esp`: sp (top of stack)
+  
+  `ebp`: sp (for x86)
 
-Then, change state to `RUNNABLE`.
+  Then, change state to `RUNNABLE`.
 
 
 - `thread_exit()`
